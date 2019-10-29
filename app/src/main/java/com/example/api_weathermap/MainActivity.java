@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -36,11 +37,17 @@ public class MainActivity extends AppCompatActivity {
         tv_temp = (TextView) findViewById(R.id.tv_temp);
         tv_tiempo = (TextView) findViewById(R.id.tv_tiempo);
 
+        Calendar calendar= Calendar.getInstance();
+        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+        String formato=sdf.format(calendar.getTime());
+
+        tv_fecha.setText(formato);
+
         find_weather();
     }
 
         public void find_weather(){
-            String url="http://api.openweathermap.org/data/2.5/weather?q=madrid,es&appid=9e47ce3836d2e08114c659c607fdb4bc";
+            String url="https://api.openweathermap.org/data/2.5/weather?q=madrid,es&appid=9e47ce3836d2e08114c659c607fdb4bc";
 
             JsonObjectRequest jor=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                 @Override
@@ -57,17 +64,13 @@ public class MainActivity extends AppCompatActivity {
                         tv_ciudad.setText(ciudad);
                         tv_tiempo.setText(descripcion);
 
-                        Calendar calendar= Calendar.getInstance();
-                        SimpleDateFormat sdf=new SimpleDateFormat("EEEE=MM-dd");
-                        String formato=sdf.format(calendar.getTime());
 
-                        tv_fecha.setText(formato);
 
                         double temp_int=Double.parseDouble(temp);
                         double centi=temp_int-273;
                         centi=Math.round(centi);
                         int i=(int)centi;
-                        tv_temp.setText(String.valueOf(i));
+                        tv_temp.setText(String.valueOf(i).concat("º"));
 
                     }catch(JSONException e){
                         e.printStackTrace();
@@ -77,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
                 }
             }
             );
