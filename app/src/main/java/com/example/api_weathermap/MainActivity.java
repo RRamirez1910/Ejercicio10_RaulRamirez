@@ -70,25 +70,31 @@ public class MainActivity extends AppCompatActivity {
                         String icono=object.getString("icon");
                         String humedad=String.valueOf(main_object.getDouble("humidity"));
 
-                        //Establecer icono en base al tiempo:
+                        //Establecer icono en base al tiempo y si es de día o de noche:
                         if(icono.equals("01d")){
                             imageview.setImageResource(R.drawable.i01d);
                         }else if(icono.equals("02d")){
                             imageview.setImageResource(R.drawable.i02d);
-                        }else if(icono.equals("03d")){
+                        }else if(icono.equals("03d") || icono.equals("03n")){
                             imageview.setImageResource(R.drawable.i03d);
-                        }else if(icono.equals("04d")){
+                        }else if(icono.equals("04d") || icono.equals("04n")){
                             imageview.setImageResource(R.drawable.i04d);
-                        }else if(icono.equals("09d")){
+                        }else if(icono.equals("09d") || icono.equals("09n")){
                             imageview.setImageResource(R.drawable.i09d);
                         }else if(icono.equals("10d")){
                             imageview.setImageResource(R.drawable.i10d);
-                        }else if(icono.equals("11d")){
+                        }else if(icono.equals("11d") || icono.equals("11n")){
                             imageview.setImageResource(R.drawable.i11d);
-                        }else if(icono.equals("13d")){
+                        }else if(icono.equals("13d") || icono.equals("13n")){
                             imageview.setImageResource(R.drawable.i13d);
-                        }else if(icono.equals("50d")){
+                        }else if(icono.equals("50d") || icono.equals("50n")){
                             imageview.setImageResource(R.drawable.i50d);
+                        }else if(icono.equals("01n")){
+                            imageview.setImageResource(R.drawable.i01n);
+                        }else if(icono.equals("02n")) {
+                            imageview.setImageResource(R.drawable.i02n);
+                        }else if(icono.equals("10n")){
+                            imageview.setImageResource(R.drawable.i10n);
                         }
 
                         // Asignamos los valores cogidos anteriormente a los TextView:
